@@ -77,10 +77,16 @@ The objective of this project is to develop a delivery parcel management system 
    ```bash
     composer install
     ```
-3. Install the Python dependencies:
+3. Create and activate a virtual environment:
+
+```bash
+python -m venv venv
+# On Windows use `venv\Scripts\activate`
+```
+4. Install the Python dependencies:
     ```bash
    pip install -r requirements.txt
-4. Set up the MySQL database and configure the connection settings in config.py
+5. Set up the MySQL database and configure the connection settings in config.py
   
    -Create the Database:
          ```bash
@@ -110,12 +116,12 @@ The objective of this project is to develop a delivery parcel management system 
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://username:password@localhost/parcel_management'
 ```
 
-5.Run the Flask application:
+6.Run the Flask application:
 ```bash
 python app.py
 ```
 
-6.
+7.
 - Example SQL for Creating Admin User:
 ```bash
 INSERT INTO user (username, password, email, is_admin) VALUES ('admin', 'your_hashed_password', 'admin@example.com', 1);
