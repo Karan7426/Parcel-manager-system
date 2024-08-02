@@ -95,17 +95,26 @@ The objective of this project is to develop a delivery parcel management system 
     password VARCHAR(255) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     is_admin TINYINT(1) DEFAULT 0,  
-);
-  CREATE TABLE parcels (
+   );
+    CREATE TABLE parcels (
     id INT AUTO_INCREMENT PRIMARY KEY,
     parcel_name VARCHAR(100) NOT NULL,
     status VARCHAR(50) NOT NULL,
     estimated_date DATE NULL,
     location VARCHAR(255) NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+    );
+      ```
+-Configure Database Connection:
+```bash
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://username:password@localhost/parcel_management'
 ```
- 
+
+5.Run the Flask application:
+```bash
+python app.py
+```
+
 
 
 
