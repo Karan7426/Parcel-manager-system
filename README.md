@@ -123,6 +123,6 @@ INSERT INTO user (username, password, email, is_admin) VALUES ('admin', 'your_pa
 7.
 - Example SQL for Creating Normal User:
 ```bash
-INSERT INTO user (username, password, email, is_admin) VALUES ('username', 'your_hashed_password', 'user@example.com', 0);
+INSERT INTO user (username, password, email, is_admin) VALUES ('username', 'your_password', 'user@example.com', 0);
 
 
