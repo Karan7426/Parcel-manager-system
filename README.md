@@ -83,9 +83,30 @@ The objective of this project is to develop a delivery parcel management system 
 4. Set up the MySQL database and configure the connection settings in config.py
   
    -Create the Database:
-         ``bash
+         ```bash
          CREATE DATABASE parcel_management;
          USE parcel_management;
+         ```
+   -Tables
+    ```bash
+    CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    is_admin TINYINT(1) DEFAULT 0,  
+);
+  CREATE TABLE parcels (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    parcel_name VARCHAR(100) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    estimated_date DATE NULL,
+    location VARCHAR(255) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+ 
+
 
 
 
