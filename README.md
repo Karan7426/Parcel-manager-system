@@ -115,3 +115,8 @@ SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://username:password@localhost/parcel_ma
 python app.py
 ```
 
+6.
+- Example SQL for Creating Admin User:
+```bash
+INSERT INTO users (username, password, email, is_admin) VALUES ('admin', 'your_hashed_password', 'admin@example.com', 1);
+
