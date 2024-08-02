@@ -80,10 +80,13 @@ The objective of this project is to develop a delivery parcel management system 
 3. Install the Python dependencies:
     ```bash
    pip install -r requirements.txt
-4. Install the frontend dependencies:
-   ```bash
-   npm install
-5. 
+4. Set up the MySQL database and configure the connection settings in config.py
+  
+   -Create the Database:
+         ``bash
+         CREATE DATABASE parcel_management;
+         USE parcel_management;
+
 
 
 
