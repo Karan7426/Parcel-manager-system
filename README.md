@@ -118,11 +118,11 @@ python app.py
 6.
 - Example SQL for Creating Admin User:
 ```bash
-INSERT INTO users (username, password, email, is_admin) VALUES ('admin', 'your_passwor', 'admin@example.com', 1);
+INSERT INTO user (username, password, email, is_admin) VALUES ('admin', 'your_passwor', 'admin@example.com', 1);
 ```
 7.
 - Example SQL for Creating Normal User:
 ```bash
-INSERT INTO users (username, password, email, is_admin) VALUES ('username', 'your_hashed_password', 'user@example.com', 0);
+INSERT INTO user (username, password, email, is_admin) VALUES ('username', 'your_hashed_password', 'user@example.com', 0);
 
 
