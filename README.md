@@ -71,7 +71,7 @@ The objective of this project is to develop a delivery parcel management system 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
+   git clone https://github.com/Karan7426/Parcel-manager-system
 
 2. Navigate to the project directory:
    ```bash
