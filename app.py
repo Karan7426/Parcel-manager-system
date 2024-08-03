@@ -30,6 +30,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(150), unique=True, nullable=False)
     email = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
@@ -78,7 +79,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
             flash('Login successful', 'success')
-            if user.email == 'admin@example.com':   
+            if user.is_admin == 1:   
                 return redirect(url_for('admin_dashboard'))
             return redirect(url_for('user_dashboard'))
         else:
@@ -100,7 +101,7 @@ def signup():
 @app.route('/admin_dashboard', methods=['GET', 'POST'])
 @login_required
 def admin_dashboard():
-    if current_user.email != 'admin@example.com':
+    if current_user.is_admin != 1:
         return redirect(url_for('user_dashboard'))
     
     parcels = Parcel.query.all()
@@ -132,6 +133,24 @@ def admin_dashboard():
 
     return render_template('admin.html', form=form, parcels=parcels, update_form=update_form)
 
+
+@app.route('/get_parcel_details', methods=['GET'])
+@login_required
+def get_parcel_details():
+    parcel_id = request.args.get('parcel_id')
+    parcel = Parcel.query.get(parcel_id)
+    if parcel:
+        return jsonify({
+            'id': parcel.id,
+            'parcel_name': parcel.parcel_name,
+            'sender': parcel.sender,
+            'recipient': parcel.recipient,
+            'status': parcel.status,
+            'estimated_date': parcel.estimated_date,
+            'location': parcel.location
+        })
+    else:
+        return jsonify({'error': 'Parcel not found'}), 404
 @app.route('/update_parcel', methods=['POST'])
 @login_required
 def update_parcel():
@@ -161,7 +180,7 @@ def user_dashboard():
 @app.route('/add_parcel', methods=['POST'])
 @login_required
 def add_parcel():
-    if current_user.email == 'admin@example.com':
+    if current_user.is_admin == 1:
         return redirect(url_for('admin_dashboard'))
 
     sender = request.form.get('sender')
@@ -181,7 +200,7 @@ def add_parcel():
 @login_required
 def delete_parcel():
     parcel_id = request.form.get('parcel_id')
-    if current_user.email != 'admin@example.com':
+    if current_user.is_admin != 1:
         return redirect(url_for('user_dashboard'))
 
     parcel = Parcel.query.get_or_404(parcel_id)
